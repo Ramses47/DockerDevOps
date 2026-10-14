@@ -1,0 +1,24 @@
+name: informacion
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  revisar-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: imprimir-informacion
+        run: echo "Informacion del entorno"
+
+      - name: mostrar-informacion
+        run: |
+          echo "Repositorio: $GITHUB_REPOSITORY"
+          echo "Rama: $GITHUB_REF_NAME"
+          echo "Autor del commit: $GITHUB_ACTOR"
+          # Ver el sistema de Linux
+          uname -a
