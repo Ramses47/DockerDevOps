@@ -10,11 +10,11 @@ permissions:
 jobs:
   construir:
     name: Lint y Construcción
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Importar Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Lint de la receta
         uses: hadolint/hadolint-action@v3.1.0
