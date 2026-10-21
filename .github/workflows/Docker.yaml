@@ -25,7 +25,7 @@ jobs:
     needs: revisar
     runs on: ubuntu-latest
 
-      steps:
+    steps:
       - name: Construir Imagen
         uses: action/checkout@v4
         run: docker build -t etiqueta.
