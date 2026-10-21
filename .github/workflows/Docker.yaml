@@ -4,19 +4,19 @@ on:
   push:
     branches: [main]
 
-  permissions:
-    contents: read
+permissions:
+  contents: read
 
-  jobs:
-    construir:
-      name: Lint y Construccion
-      runs-on: ubuntu-latest
+jobs:
+  construir:
+    name: Lint y Construcción
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Importar Chekout
-          uses: actions/checkout@v4
+    steps:
+      - name: Importar Checkout
+        uses: actions/checkout@v4
 
-        - name: Lint de la receta
-          uses: hadolint/hadolint-action@3.4.0
-          with:
-            dockerfile: Dockerfile
+      - name: Lint de la receta
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
