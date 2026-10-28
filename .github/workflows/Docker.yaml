@@ -2,7 +2,9 @@ name: Buildear Imagen
 
 on:
   push:
-    branches: [main]
+    #branches: [main]
+    tags:
+      - "v*"
 
 permissions:
   contents: read
@@ -44,4 +46,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/ramses47/minecraft-server:latest
+          tags: ghcr.io/ramses47/minecraft-server:${{github.ref_name}}
