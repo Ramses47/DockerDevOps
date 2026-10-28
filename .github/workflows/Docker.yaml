@@ -23,7 +23,7 @@ jobs:
   construir:
     name: construir
     needs: revisar
-    runs on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Inportar Chekout
