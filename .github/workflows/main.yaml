@@ -27,23 +27,21 @@ jobs:
   
   publicar:
     needs: revisar
-    name: Iniciar Sesion en GHCR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      - name: Iniciar Sesion
-        uses: docker/login-action@v3
-        with: 
-          registry: ghcr.io
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
+      - name: Descargar repositorio
+        uses: action/checkout@v4
 
-      - name: Importar Checkout
-        uses: actions/checkout@v4
+      - name: Construir imagen
+        run: docker build -t servidor-minecraft:latest
 
-      - name: Construir
-        uses: docker/build-push-action@v6
+      - name: Exportar imagen
+        run: docker save servidor-minecraft:latest -o servidor-tar
+
+      - name: Subir imagen
+        uses: action/upload-artifact@v7
         with:
-          context: .
-          push: true
-          tags: ghcr.io/ramses47/minecraft-server:${{github.ref_name}}
+          name: imagen-docker
+          path: servidor.tar
+          compression-lavel: 0
