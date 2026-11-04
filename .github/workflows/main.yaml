@@ -27,17 +27,17 @@ jobs:
 
     steps:
       - name: Descargar repositorio
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Construir imagen
-        run: docker build -t servidor-minecraft:latest
+        run: docker build -t servidor-minecraft:latest .
 
       - name: Exportar imagen
-        run: docker save servidor-minecraft:latest -o servidor-tar
+        run: docker save servidor-minecraft:latest -o servidor.tar
 
       - name: Subir imagen
-        uses: action/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: imagen-docker
           path: servidor.tar
-          compression-lavel: 0
+          compression-level: 0
