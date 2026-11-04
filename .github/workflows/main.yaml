@@ -66,3 +66,25 @@ jobs:
         run: |
           docker images
           docker inspect servidor-minecraft:latest
+
+  importar-linux:
+    name: Importar imagen
+    runs-on: ubuntu-latest
+    needs: publicar
+
+    steps:
+      - name: Descargar artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: imagen-docker
+
+      - name: Verificar archivo
+        run: ls -lh servidor.tar
+
+      - name: Cargar imagen de Docker
+        run: docker load -i servidor.tar
+
+      - name: Verificar importacion
+        run: |
+          docker images
+          docker inspect servidor-minecraft:latest
