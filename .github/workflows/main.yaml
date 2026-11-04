@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   revisar:
-    name: Lint y Construcción
+    name: Lint y Construccion
     runs-on: ubuntu-latest
 
     steps:
