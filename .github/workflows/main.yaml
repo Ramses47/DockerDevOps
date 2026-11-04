@@ -62,6 +62,6 @@ jobs:
 
       - name: verificar importacion
         shell: push
-        run:
+        run: |
           docker imagen
           docker inspect minecraft-server:latest 
