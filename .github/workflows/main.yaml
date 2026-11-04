@@ -43,6 +43,7 @@ jobs:
           compression-level: 0
 
   importar-windows:
+    name: Importar en Windows
     runs-on: windows-latest
     needs: construir
 
