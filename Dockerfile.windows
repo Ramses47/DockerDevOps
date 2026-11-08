@@ -1,0 +1,22 @@
+# escape=`
+# Version Windows del Dockerfile (contenedor Windows, no Linux).
+# La imagen base debe coincidir con la version del host:
+# windows-latest en GitHub Actions = Windows Server 2025 -> ltsc2025
+FROM eclipse-temurin:25-jdk-windowsservercore-ltsc2025
+
+# Usar PowerShell en lugar de cmd para los RUN
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+WORKDIR C:\server
+
+EXPOSE 25565
+
+# En Windows no hay apt-get ni wget: se descarga con Invoke-WebRequest
+RUN Invoke-WebRequest `
+    -Uri 'https://piston-data.mojang.com/v1/objects/823e2250d24b3ddac457a60c92a6a941943fcd6a/server.jar' `
+    -OutFile 'C:\server\Server.jar' `
+    -UseBasicParsing
+
+WORKDIR C:\data
+
+CMD ["java", "-Xmx4G", "-Xms4G", "-jar", "C:\\server\\Server.jar", "nogui"]
