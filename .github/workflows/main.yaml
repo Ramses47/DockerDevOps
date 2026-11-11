@@ -70,7 +70,7 @@ jobs:
   construir-windows:
     name: Construir en Windows
     needs: revisar
-    runs-on: windows-latest
+    runs-on: Windows
 
     steps:
       - name: Descargar repositorio
@@ -94,7 +94,7 @@ jobs:
   importar-windows:
     name: Importar en Windows
     needs: construir-windows
-    runs-on: windows-latest
+    runs-on: Windows
 
     steps:
       - name: Descargar artifact
